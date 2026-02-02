@@ -17,7 +17,7 @@ namespace UniversityandCollegeinformation.Logic
             var DTO =obj.Query<UandCDto>("select c.collegename,u.universityname from university u  inner join  college c on u.universityid=c.universityid");
 
             obj.Close();
-             var Result=DTO.ToList();
+            var Result = DTO.ToList();
             return Result;
         }
         public int AddcollegeData(CollegesDto  dto )

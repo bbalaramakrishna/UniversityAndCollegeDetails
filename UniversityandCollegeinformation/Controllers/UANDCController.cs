@@ -20,25 +20,30 @@ namespace UniversityandCollegeinformation.Controllers
         }
 
         [HttpPost]
-public IActionResult Collegedata(CollegesDto dtocollege)
+        public IActionResult Collegedata(CollegesDto dtocollege)
         {
-            UandCInterface obj=new UandCLogic();
-           var result = obj.AddcollegeData(dtocollege);
-            string message = " ";
-            if (result > 0)
+            if (dtocollege != null)
             {
-                message = "Data inserted successfully";
+                UandCInterface obj = new UandCLogic();
+                var result = obj.AddcollegeData(dtocollege);
+                string message = " ";
+                if (result > 0)
+                {
+                    message = "Data inserted successfully";
+                }
+                else
+                {
+                    message = "Data insertion failed";
+                }
+
+                return Ok(message);
             }
             else
             {
-                message = "Data insertion failed";
+                return BadRequest("Invalid college data");
             }
 
-            return Ok(message);
-
         }
-
-
         [Route("updatecollege")]
         [HttpPut]
        public IActionResult UpdateCollegeData(string collegeName,int collegeId)
